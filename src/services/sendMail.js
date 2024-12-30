@@ -7,7 +7,7 @@ import handlebars from "handlebars";
 import path from "node:path";
 import fs from "node:fs/promises";
 
-export const requestSendBody = async ({ name, email, message }) => {
+export const requestSendBody = async ({ name, email, number }) => {
 	const templatePath = path.join(TEMPLATES_DIR, "reset-password-email.html");
 
 	const templateSource = (await fs.readFile(templatePath)).toString();
@@ -16,7 +16,7 @@ export const requestSendBody = async ({ name, email, message }) => {
 	const html = template({
 		name: name,
 		email: email,
-		message: message,
+		number: number,
 	});
 
 	await sendEmail({
